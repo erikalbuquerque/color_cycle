@@ -1,8 +1,17 @@
 import React from 'react';
 
+import { GlobalStyles } from "./globalStyles";
+
+import Input from "./components/Input";
+
 function App() {
   return (
-    <>Color Cycle Test</>
+    <>
+      <GlobalStyles />
+      <Input name="Hexadecimal"/>
+      <Input name="Hexadecimal"/>
+      <Input name="Hexadecimal"/>
+    </>
   );
 }
 
