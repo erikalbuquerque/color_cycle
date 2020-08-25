@@ -10,3 +10,9 @@ export const Container = styled.div`
 `;
 
 export const InputArea = styled.div``;
+
+export const Hashtag = styled.span`
+ ::before {
+    content: '#';
+  }
+`;

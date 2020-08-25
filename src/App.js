@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { GlobalStyles } from "./assets/globalStyles";
-import { Container, InputArea } from "./assets/styles";
+import { Container, InputArea, Hashtag } from "./assets/styles";
 
 import Input from "./components/Input";
 import Circle from "./components/Circle";
@@ -12,9 +12,10 @@ function App() {
       <Circle />
 
       <InputArea>
-        <Input name="Hexadecimal"/>
-        <Input name="Hexadecimal"/>
-        <Input name="Hexadecimal"/>
+        <Hashtag />
+        <Input name="hex01"/>
+        <Input name="hex02"/>
+        <Input name="hex03"/>
       </InputArea>
 
       <GlobalStyles />
