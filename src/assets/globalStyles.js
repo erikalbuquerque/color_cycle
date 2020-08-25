@@ -12,4 +12,9 @@ export const GlobalStyles = createGlobalStyle`
   body {
     background: #f5f5f5;
   }
+  #root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
