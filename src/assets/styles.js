@@ -5,14 +5,5 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 20%;
-`;
-
-export const InputArea = styled.div``;
-
-export const Hashtag = styled.span`
- ::before {
-    content: '#';
-  }
+  margin-top: 32px;
 `;

@@ -1,25 +1,24 @@
 import React from 'react';
 
 import { GlobalStyles } from "./assets/globalStyles";
-import { Container, InputArea, Hashtag } from "./assets/styles";
+import { Container } from "./assets/styles";
 
-import Input from "./components/Input";
+import InputArea from "./components/InputArea";
 import Circle from "./components/Circle";
+
+import HexProvider from "./context/Hexadecimal";
 
 function App() {
   return (
-    <Container>
-      <Circle />
+    <HexProvider>
+      <Container>
+        <Circle />
 
-      <InputArea>
-        <Hashtag />
-        <Input name="hex01"/>
-        <Input name="hex02"/>
-        <Input name="hex03"/>
-      </InputArea>
+        <InputArea />
 
-      <GlobalStyles />
-    </Container>
+        <GlobalStyles />
+      </Container>
+    </HexProvider>
   );
 }
 

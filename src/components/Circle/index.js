@@ -2,9 +2,13 @@ import React from "react";
 
 import { CircleContainer } from "./styles";
 
-function Circle({ r, g, b }){
+import { useHex } from "./../../context/Hexadecimal";
+
+function Circle(){
+  const { red, green, blue  } = useHex();
+  const color = `#${red}${green}${blue}`;
   return(
-    <CircleContainer />
+    <CircleContainer color={color}/>
   );
 }
 export default Circle;
