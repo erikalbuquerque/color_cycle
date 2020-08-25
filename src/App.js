@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { GlobalStyles } from "./assets/globalStyles";
-import { Container } from "./assets/styles";
+import { Container, InputArea } from "./assets/styles";
 
 import Input from "./components/Input";
 import Circle from "./components/Circle";
@@ -9,13 +9,14 @@ import Circle from "./components/Circle";
 function App() {
   return (
     <Container>
-      <>
-        <Input name="Hexadecimal"/>
-        <Input name="Hexadecimal"/>
-        <Input name="Hexadecimal"/>
-      </>
-
       <Circle />
+
+      <InputArea>
+        <Input name="Hexadecimal"/>
+        <Input name="Hexadecimal"/>
+        <Input name="Hexadecimal"/>
+      </InputArea>
+
       <GlobalStyles />
     </Container>
   );
