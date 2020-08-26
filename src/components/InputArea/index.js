@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 
-import { Container, Hashtag, InputContent } from "./styles";
+import { Container, Hashtag, InputContent, Message, Box, Button } from "./styles";
 
 //import Input from "./../Input";
 
 import { useHex } from "../../context/Hexadecimal";
 
 function InputArea(){
+  const [newInputColor, setNewInputColor] = useState([0])
   const { setRed, setGreen, setBlue } = useHex();
 
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
 
   const keywords = ["a", "b", "c", "d", "e", "f"];
-  const keynumbers = ["0", "1", "2", "3", "4", "6", "7", "8", "9"];
+  const keynumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
   function toUpper(value){
     return value.toUpperCase()
+  }
+  function handleButton(){
+    setNewInputColor([...newInputColor, newInputColor.push()])
   }
 
   function isValide(value){
@@ -33,7 +37,7 @@ function InputArea(){
       const isNumber = keynumbers.includes(value);
 
       if((!isNumber && !isWord) && (!isWordUpperCase || isWordUpperCase)) { 
-        setMessage("Invalide input!");
+        setMessage("Invalide input");
         return setShowMessage(true);
       }
       return setShowMessage(false);
@@ -58,28 +62,32 @@ function InputArea(){
 
   return(
     <Container>
-      <Hashtag />
-
-      <InputContent 
-        name="hex01" 
-        placeholder="00" 
-        maxLength="2"
-        onChange={(e) => changeRed(e.target.value)}
-      />
-      <InputContent 
-        name="hex01" 
-        placeholder="00" 
-        maxLength="2"
-        onChange={(e) => changeGreen(e.target.value)}
-      />
-      <InputContent 
-        name="hex01" 
-        placeholder="00" 
-        maxLength="2"
-        onChange={(e) => changeBlue(e.target.value)}
-      />
+      <Button onClick={() => handleButton()}>+</Button>
+      {newInputColor.map(inputColor => (
+        <Box>
+          <Hashtag />
+          <InputContent 
+            name="hex01" 
+            placeholder="00" 
+            maxLength="2"
+            onChange={(e) => changeRed(e.target.value)}
+          />
+          <InputContent 
+            name="hex01" 
+            placeholder="00" 
+            maxLength="2"
+            onChange={(e) => changeGreen(e.target.value)}
+          />
+          <InputContent 
+            name="hex01" 
+            placeholder="00" 
+            maxLength="2"
+            onChange={(e) => changeBlue(e.target.value)}
+          />
+        </Box>
+      ))}
       
-      {showMessage ? <span>{message}</span> : ""}
+      {showMessage ? <Message>{message}</Message> : ""}
 
     </Container>
   );

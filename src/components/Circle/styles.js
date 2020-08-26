@@ -4,6 +4,7 @@ export const CircleContainer = styled.div`
   width: 200px;
   height: 200px;
   background: ${props => props.color};
+  transition: background .25s ease;
   border-radius: 50%;
   margin: 16px;
 `;
