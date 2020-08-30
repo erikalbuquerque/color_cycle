@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 
-import { Container, Hashtag, InputContent, Message, Box, Button } from "./styles";
+import { Container, Hashtag, InputContent, Box, AddNewColor, RemoveColor } from "./styles";
+import { FiPlus, FiMinus } from 'react-icons/fi';
+
+import Message from "../Message";
 
 //import Input from "./../Input";
 
-import { useHex } from "../../context/Hexadecimal";
+import { useAnimation } from "../../context/Animation";
 
 function InputArea(){
-  const [newInputColor, setNewInputColor] = useState([0])
-  const { setRed, setGreen, setBlue } = useHex();
+  const { red, green, blue, setRed, setGreen, setBlue, setColors, colors, isDisabled } = useAnimation();
+  const [newInputColor, setNewInputColor] = useState([colors.length]);
 
   const [showMessage, setShowMessage] = useState(false);
   const [message, setMessage] = useState("");
@@ -16,13 +19,30 @@ function InputArea(){
   const keywords = ["a", "b", "c", "d", "e", "f"];
   const keynumbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
+  const color = `#${red}${green}${blue}`;
+
   function toUpper(value){
     return value.toUpperCase()
   }
-  function handleButton(){
+  function resetColor(){
+    setRed("")
+    setGreen("")
+    setBlue("")
+  }
+  function handleButtonAdd(){
+    setColors([...colors, color]);
+    resetColor();
     setNewInputColor([...newInputColor, newInputColor.push()])
   }
+  function handleButtonRemove(id){
+    const filteredArrayColors = colors.filter(color => color !== colors[id])
+    //const filteredArrayInputs = newInputColor.filter(input => input !== newInputColor[id])
+    const filteredArrayInputs = [...newInputColor]
+    filteredArrayInputs.splice(id, 1)
 
+    setColors([filteredArrayColors])
+    setNewInputColor(filteredArrayInputs)
+  }
   function isValide(value){
     const valueInArray = value.split("");
 
@@ -62,32 +82,37 @@ function InputArea(){
 
   return(
     <Container>
-      <Button onClick={() => handleButton()}>+</Button>
-      {newInputColor.map(inputColor => (
-        <Box>
+      <AddNewColor disabled={isDisabled} onClick={() => handleButtonAdd()}>
+        <FiPlus />
+      </AddNewColor>
+      {newInputColor.map((index) => (
+        <Box key={index}>
+          <RemoveColor disabled={isDisabled} onClick={() => handleButtonRemove(index)}>
+            <FiMinus />
+          </RemoveColor>
           <Hashtag />
           <InputContent 
-            name="hex01" 
             placeholder="00" 
             maxLength="2"
+            disabled={isDisabled}
             onChange={(e) => changeRed(e.target.value)}
           />
-          <InputContent 
-            name="hex01" 
+          <InputContent  
             placeholder="00" 
             maxLength="2"
+            disabled={isDisabled}
             onChange={(e) => changeGreen(e.target.value)}
           />
-          <InputContent 
-            name="hex01" 
+          <InputContent  
             placeholder="00" 
             maxLength="2"
+            disabled={isDisabled}
             onChange={(e) => changeBlue(e.target.value)}
           />
         </Box>
       ))}
       
-      {showMessage ? <Message>{message}</Message> : ""}
+      {showMessage ? <Message type="alert" body={message}/> : ""}
 
     </Container>
   );

@@ -6,14 +6,16 @@ import { Container } from "./assets/styles";
 import InputArea from "./components/InputArea";
 import Circle from "./components/Circle";
 import SetAnimationButton from "./components/SetAnimationButton";
+import Informations from "./components/Informations";
 
-import HexProvider from "./context/Hexadecimal";
+import AnimationProvider from "./context/Animation";
 
 function App() {
   return (
-    <HexProvider>
+    <AnimationProvider>
       <Container>
         <Circle />
+        <Informations />
 
         <InputArea />
 
@@ -21,7 +23,7 @@ function App() {
 
         <GlobalStyles />
       </Container>
-    </HexProvider>
+    </AnimationProvider>
   );
 }
 

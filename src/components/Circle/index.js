@@ -2,13 +2,13 @@ import React from "react";
 
 import { CircleContainer } from "./styles";
 
-import { useHex } from "./../../context/Hexadecimal";
+import { useAnimation } from "./../../context/Animation";
 
 function Circle(){
-  const { red, green, blue  } = useHex();
+  const { red, green, blue, animation, colors, time  } = useAnimation();
   const color = `#${red}${green}${blue}`;
   return(
-    <CircleContainer color={color}/>
+    <CircleContainer color={color} pallete={colors} animation={animation} time={time}/>
   );
 }
 export default Circle;
